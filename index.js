@@ -13,7 +13,7 @@ const router = jsonServer.router("./data/db.json");
 server.use("/api", router);
 server.db = router.db;
 
-const middlewares = jsonServer.defualts();
+const middlewares = jsonServer.default();
 const rules = auth.rewriter({
   products: 444,
   featured_products: 444,
