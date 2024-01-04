@@ -1,6 +1,6 @@
-import { express } from "express";
-import { jsonServer } from "json-server";
-import { auth } from "json-server-auth";
+import express from "express";
+import jsonServer from "json-server";
+import auth from "json-server-auth";
 
 const server = express();
 server.use((req, res, next) => {
@@ -13,7 +13,7 @@ const router = jsonServer.router("./data/db.json");
 server.use("/api", router);
 server.db = router.db;
 
-const middlewares = jsonServer.default();
+const middlewares = jsonServer.defaults();
 const rules = auth.rewriter({
   products: 444,
   featured_products: 444,
@@ -26,4 +26,6 @@ server.use(auth);
 server.use(middlewares);
 server.use(router);
 
-server.listen(8000);
+server.listen(8000, () => {
+  console.log("Server is running on port 8000");
+});
